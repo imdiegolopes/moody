@@ -48,7 +48,8 @@ const Tags = styled.div`
 const Header = styled.div`
   display: flex;
   place-items: center;
-  text-align: left;
+  text-align: center;
+  justify-content: center;
 `;
 
 const Row = styled.div`
@@ -197,7 +198,7 @@ function App() {
 
       <hr />
 
-      <h2>Last Activities:</h2>
+      <h2>Last Activities</h2>
 
       <LastActivity>
         {moods && moods.map((mood: any) => {
