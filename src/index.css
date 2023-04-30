@@ -74,3 +74,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.button  {
+  background: #4b8b9a;
+border: 0;
+padding: 5px 10px;
+font-size: 16px;
+margin: 15px 0;
+height: 40px;
+width: 100px;
+}
+
+section {
+  background: #fff;
+padding: 10px 20px;
+margin-bottom: 20px;
+}
