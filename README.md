@@ -1,4 +1,6 @@
-## Moody<p align="center">
+## Moody
+
+<p align="center">
 
   <img src="./docs/moody.png" alt="Logo" width="80" height="80">
 
