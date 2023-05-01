@@ -7,10 +7,10 @@ import Sentiment from "sentiment";
 import { createMood, getMoods } from "./services/mood";
 import { debounce } from "./helpers/debounce";
 import { Header, History, LastActivity, Row, Tag, TagColor, Tags, Text, Textarea, Title } from "./App.styles";
-
-
-
-function App() {
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  
+  function App() {
   const initialMoodState = {
     activity: "",
     comments: "",
@@ -22,10 +22,10 @@ function App() {
   const [mood, setMood] = useState<PostMoodInput>(initialMoodState);
   const [tags, setTags] = useState<string[]>([]);
   const [date, setDate] = useState(new Date());
-
+  
   useEffect(() => {
     console.log("mounted");
-
+    
     handleGetMoods();
   }, []);
 
@@ -55,9 +55,12 @@ function App() {
     await createMood(mood);
     handleGetMoods();
     setMood(initialMoodState);
+    toast('Mood added successfully!', { type: 'success' })
   };
 
   const handleRemoveMood = (id: string) => {
+    toast('Mood removed successfully!', { type: 'success' })
+    
     const response = fetch(`http://localhost:5000/v1/moods/${id}`, {
       method: "POST",
     })
@@ -65,6 +68,9 @@ function App() {
         return response.json();
       })
       .then((data) => {
+        handleGetMoods();
+      })
+      .catch((data) => {
         handleGetMoods();
       });
   };
@@ -239,10 +245,8 @@ function App() {
                       <div>
                         {mood && mood.id && (
                           <>
-                            <span onClick={() => {}}>
-                              <FaPen />
-                            </span>
                             <span
+                              className="icons icons--delete"
                               onClick={() => {
                                 handleRemoveMood(mood.id);
                               }}
@@ -259,6 +263,7 @@ function App() {
           </LastActivity>
         </section>
       )}
+      <ToastContainer />
     </>
   );
 }
